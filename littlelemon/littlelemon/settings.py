@@ -77,12 +77,10 @@ WSGI_APPLICATION = 'littlelemon.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.mysql',
         'OPTIONS': {
-            'read_default_file': BASE_DIR / '..' / 'db.cnf',
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+            'read_default_file': str(BASE_DIR / 'db.cnf'),
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
         },
     }
 }
