@@ -31,7 +31,7 @@ class BookingViewSet(viewsets.ModelViewSet):
     pagination_class = CustomPagination
     search_fields = ['name', 'booking_date']
     ordering_fields = ['name', 'booking_date']
-    # http_method_names = ['get', 'post', 'put', 'patch', 'delete']
+    http_method_names = ['get', 'post', 'put', 'patch', 'delete']
 
 
 def index(request):
