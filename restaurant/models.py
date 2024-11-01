@@ -11,7 +11,11 @@ class Menu(models.Model):
     
     def __str__(self):
       return self.title
-    
+
+    def get_item(self):
+        return f'{self.title} : {str(self.price)}'
+
+
 class Booking(models.Model):
     name = models.CharField(max_length=255)
     no_of_guests = models.SmallIntegerField(default=0)
@@ -22,3 +26,6 @@ class Booking(models.Model):
 
     def __str__(self): 
         return self.name
+    
+    def get_item(self):
+        return f'{self.booking_date} : {self.name}'
