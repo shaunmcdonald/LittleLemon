@@ -12,6 +12,11 @@ I say all this as an apology to my reviewers, because I'd wanted to write some n
 I'm going to keep this project as a base for other stuff, so if you find something that isn't working, please message me via GitHub.
 Or, feel free to Pull Request.
 
+# Python
+Be sure to edit the PipFile to match your prederred Python Version!
+[requires]
+python_version = "3.13"
+
 # MySQL
 I have commented the MySQL Conf in settings.py so that I can use a local db.cnf file.
 
