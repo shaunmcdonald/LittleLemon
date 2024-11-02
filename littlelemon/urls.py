@@ -19,7 +19,9 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('restaurant/', include('restaurant.urls')),
-    path('auth/', include('djoser.urls')),
-    path('auth/', include('djoser.urls.authtoken')),
+    path('restaurant/', include('restaurant.urls', namespace='restaurant')),
+    # Had to separate API Routes as the calles were resolving to webpages in Insomnia once I added all the templates and redirects. UGH!!!
+    path('api/restaurant/', include('restaurant.api_urls', namespace='restaurant-api')),
+    path('api/auth/', include('djoser.urls')),
+    path('api/auth/', include('djoser.urls.authtoken')),
 ]
