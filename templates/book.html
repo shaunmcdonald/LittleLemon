@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section class="booking-section">
+  
+  <div class="column">
+ 
+      <h2>Reserve Your Table!</h2>
+
+  </div>
+  <div class="row">
+    <div class="column">
+      <form method="post" action="{% url 'restaurant:booking-list' %}">
+        {% csrf_token %} 
+        {% if messages %} 
+        {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+          {{ message }}
+        </div>
+        {% endfor %} 
+        {% endif %} 
+        {% for field in form %}
+        <div class="form-group">
+          {{ field.label_tag }} 
+          {{ field }} 
+          {% if field.errors %}
+          <div class="error">{{ field.errors }}</div>
+          {% endif %}
+        </div>
+        {% endfor %}
+
+        <button type="submit" class="btn-reserve">Reserve</button>
+      </form>
+    </div>
+
+    <div class="column">
+      <h2>Bookings For {{ today|date:"F d, Y" }}</h2>
+      <div id="bookings">
+        {% if bookings %}
+        <ul>
+          {% for booking in bookings %}
+          <li>
+            {{ booking.name }} - {{ booking.no_of_guests }} guests
+            <form method="post" action="{% url 'restaurant:booking-detail' pk=booking.pk %}" style="display: inline">
+              {% csrf_token %}
+              <input type="hidden" name="next" value="book" />
+              <button type="submit" class="btn-delete" onclick="return confirm('Are you sure you want to cancel this reservation?')">
+                Cancel
+              </button>
+            </form>
+          </li>
+          {% endfor %}
+        </ul>
+        {% else %}
+        <p>No bookings for today</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
