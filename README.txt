@@ -1,19 +1,22 @@
 # LittleLemon
 
-FYI, I had a terrible realization just before turning this project in, when I discovered that the only template I had was the index.html.
+This is the Capstone project for the Meta Back-End Developer Professional Certification.
 
-I wasn't sure if that was enough to satisfy the requirement "Does the web application use Django to serve static HTML content?"
+This certification included a lot of front-end tech, particularly JavaScript since it intersects with Django Template Language (the T in MVT).
 
-So, I decided to add the templating for the entire site using previous work. Ha ha! This ended up requiring new TestCases, refactors of the ViewSets,
-Routing, Project Config, a new Form etc. I broke the app many, many, many times.
+Also, the Capstone only required one index.html template to prove integration skills.
 
-I say all this as an apology to my reviewers, because I'd wanted to write some nice documentation. I'm a little tired now, so you get MVP docs :).
+However, I decided to include all the front-end templates here, since I had built them in previous assignments. In hindsight, I see why the Capston left them out.
 
-I'm going to keep this project as a base for other stuff, so if you find something that isn't working, please message me via GitHub.
-Or, feel free to Pull Request.
+The assignment asked for API endpoints on the path "restautant/*", which would conflict with the browsable paths to each template subpage.
+
+This meant I had an out-of-scope learning experience getting the API to work with browse, not to mention authentication requirements to provision public and private access for each group.
+
+In the end, it was worth it. I ultimately decided to prefix API endpoints with "api/*", which I think was the right choice regardless. 
+
 
 # Python
-Be sure to edit the PipFile to match your prederred Python Version!
+Be sure to edit the PipFile to match your prederred Python Version or install your venv and import Pipfile packages separately.
 [requires]
 python_version = "3.13"
 
@@ -71,25 +74,6 @@ BODY =  {
             "price": "8.00",
             "inventory": 25
         }
-
-# Insomnia
-Several hours spent on this as Insomnia application features seem to be ahead of its documentation.
-
-It doesn't seem to work anymore as it's explained in the Coursera videos and readings. There is no Debug tab that I can find.
-And just sending a Get request without any Headers is impossible. It defaults to at least sending Host. Along with Accept = "*/*".
-
-I had to add a Cookie to get a token-authenticated response from GET. It may be that Django or Djoser have updated in Python3.13.
-
-EDIT: So the Cookie was just letting me in via Session Auth, which means it was still not properly configured. There was nothing
-wrong with my Django setup or Views. The problem is that Auth - Bearer Token no longer works with Djoser.
-
-FIX - In the latest Insomnia...
-1) Remove Auth tab's Bearer Token
-2) On Headers tab, add
-   1) Content-Type : application/json
-   2) Authorization : Token you_token_value
-
-Step 2,2 is the change. The header key is "Authorization". The value is "Token your_auth_token" (Yes, separated by a space!)
 
 My Stuff
 - Username: admin
